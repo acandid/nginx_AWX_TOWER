@@ -1,0 +1,71 @@
+---
+- name: Install Web Server Nginx
+  hosts: all
+  become: yes
+  vars_files:
+    - defaults/main.yml
+  tasks:
+    - name: Include variables
+      include_vars: "vars/{{ ansible_facts['os_family'] }}.yml"
+
+    - block:
+        - name: Create repository nginx for Red Hat Family
+          yum_repository:
+            name: nginx
+            description: nginx repo
+            baseurl: "{{ nginx_AWX_TOWER_repo }}"
+            gpgcheck: 0
+            enabled: 1
+
+        - name: Install packages for Red Hat Family
+          yum:
+            name: "{{ nginx_AWX_TOWER_packages }}"
+            state: present
+      when: ansible_facts['os_family'] == 'RedHat'
+
+    - name: Install packages for Debian Family
+      apt:
+        name: "{{ nginx_AWX_TOWER_packages }}"
+        state: present
+        force_apt_get: true
+      when: ansible_facts['os_family'] == 'Debian'
+
+    - name: Create DocumentRoot Directory
+      file:
+        path: "/var/www/{{ nginx_AWX_TOWER_domain }}/public_html"
+        state: directory
+        recurse: yes
+        mode: 0755
+      register: nginx_AWX_TOWER_docroot
+
+    - name: Create SSL Directory
+      file:
+        path: "{{ nginx_AWX_TOWER_ssl_path }}"
+        state: directory
+
+    - name: Copy Certificates
+      copy:
+        src: files/
+        dest: "{{ nginx_AWX_TOWER_ssl_path }}"
+        mode: 0644
+        owner: root
+        group: root
+
+    - name: Create Test Page
+      template:
+        src: templates/test_page.html.j2
+        dest: "{{ nginx_AWX_TOWER_docroot.path }}/index.html"
+
+    - name: Create Vhost
+      template:
+        src: templates/vhost.conf.j2
+        dest: "{{ nginx_AWX_TOWER_vhost_path }}{{ nginx_AWX_TOWER_domain }}.conf"
+      notify: restart_webserver
+
+  handlers:
+    - name: restart_webserver
+      service:
+        name: "{{ nginx_AWX_TOWER_srv_web }}"
+        state: restarted
+        enabled: true
+...

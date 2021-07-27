@@ -1,0 +1,12 @@
+---
+nginx_AWX_TOWER_packages:
+  - nginx
+  - openssl
+
+nginx_AWX_TOWER_srv_web: nginx
+
+nginx_AWX_TOWER_ssl_path: /etc/nginx/ssl-certs/
+
+nginx_AWX_TOWER_vhost_path: /etc/nginx/conf.d/
+
+nginx_AWX_TOWER_log_path: /var/log/nginx/

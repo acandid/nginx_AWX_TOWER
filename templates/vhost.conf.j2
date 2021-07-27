@@ -1,0 +1,25 @@
+server {
+    listen 80;
+    server_name {{ nginx_AWX_TOWER_domain }} www.{{ nginx_AWX_TOWER_domain }};
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+
+    server_name {{ nginx_AWX_TOWER_domain }} www.{{ nginx_AWX_TOWER_domain }};
+
+    ssl_certificate {{ nginx_AWX_TOWER_ssl_path }}{{ nginx_AWX_TOWER_domain }}.crt;
+    ssl_certificate_key {{ nginx_AWX_TOWER_ssl_path }}{{ nginx_AWX_TOWER_domain }}.key;
+
+
+    root {{ nginx_AWX_TOWER_docroot.path }};
+    index index.html index.htm index.php;
+
+    access_log {{ nginx_AWX_TOWER_log_path }}{{ nginx_AWX_TOWER_domain }}.access.log;
+    error_log {{ nginx_AWX_TOWER_log_path }}{{ nginx_AWX_TOWER_domain }}.error.log;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
