@@ -33,7 +33,7 @@ For Red Hat family:
 |                                              |                                                        |
 | `nginx_AWX_TOWER_vhost_path`                 | /etc/nginx/conf.d/                                     |
 |                                              |                                                        |
-| `nginx_AWX_TOWER_repo`                       | http://nginx.org/packages/mainline/centos/7/$basearch/ | Nginx repository for RedHat/CentOS 7
+| `nginx_AWX_TOWER_repo`                       |http://nginx.org/packages/mainline/centos/7/$basearch/  | Nginx repository for RedHat/CentOS 7
 |                                              |                                                        |
 
 Variables that can be changed if you want.
