@@ -25,16 +25,16 @@ Necessary changes to defaults/main.yml
 Variables that can be changed if you want.
 For Red Hat family:
 
-| Variables                                    | Defaults                                               |
-|:---                                          |:---                                                    |:---
-| `nginx_AWX_TOWER_log_path`                   | /var/log/nginx/                                        |
-|                                              |                                                        |
-| `nginx_AWX_TOWER_ssl_path`                   | /etc/nginx/ssl-certs/                                  |
-|                                              |                                                        |
-| `nginx_AWX_TOWER_vhost_path`                 | /etc/nginx/conf.d/                                     |
-|                                              |                                                        |
-| `nginx_AWX_TOWER_repo`                       |                                                        | Nginx repository for RedHat/CentOS 7
-|                                              |                                                        |
+| Variables                                    | Defaults                     |
+|:---                                          |:---                          |:---
+| `nginx_AWX_TOWER_log_path`                   | /var/log/nginx/              |
+|                                              |                              |
+| `nginx_AWX_TOWER_ssl_path`                   | /etc/nginx/ssl-certs/        |
+|                                              |                              |
+| `nginx_AWX_TOWER_vhost_path`                 | /etc/nginx/conf.d/           |
+|                                              |                              |
+| `nginx_AWX_TOWER_repo`                       |                              | Nginx repository for RedHat/CentOS 7
+|                                              |                              |
 
 Variables that can be changed if you want.
 For Debian family:
