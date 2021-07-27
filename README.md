@@ -25,7 +25,7 @@ Necessary changes to defaults/main.yml
 Variables that can be changed if you want.
 For Red Hat family:
 
-| Variables                                    | Defaults                     |
+| Variables                                    | Defaults                     |Comments
 |:---                                          |:---                          |:---
 | `nginx_AWX_TOWER_log_path`                   | /var/log/nginx/              |
 |                                              |                              |
@@ -33,7 +33,7 @@ For Red Hat family:
 |                                              |                              |
 | `nginx_AWX_TOWER_vhost_path`                 | /etc/nginx/conf.d/           |
 |                                              |                              |
-| `nginx_AWX_TOWER_repo`                       |                              | Nginx repository for RedHat/CentOS 7
+| `nginx_AWX_TOWER_repo`                       |                              | Nginx repo for RedHat/CentOS 7
 |                                              |                              |
 
 Variables that can be changed if you want.
